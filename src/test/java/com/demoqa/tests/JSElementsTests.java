@@ -20,7 +20,14 @@ public class JSElementsTests extends TestBase {
     @Test
     public void jsExecutorTest(){
         sidePanel.selectTextBox();
-        new JSExecutor(driver).enterPersonalData("Olga Podgornaya", "Test@gmail.com");
+        new JSExecutor(driver).enterPersonalData("Olga Podgornaya", "Test@gmail.com")
+                .clickOnSubmitButton()
+                .getInnerText()
+                .verifyURL()
+                .refreshPage()
+                .navigateToNewPage("https://telranedu.web.app")//откроет новую ссылку в этом же окне
+                .verifyNewPageFaveIconTitle()
+        ;
 
     }
 }

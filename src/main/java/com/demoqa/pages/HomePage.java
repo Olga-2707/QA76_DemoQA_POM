@@ -25,4 +25,12 @@ public class HomePage extends BasePage {
         clickWithJS(elements,0, 200);
         return new SidePanel(driver);
     }
+
+    @FindBy(css="a[href='/alertsWindows']")
+    WebElement alertsFrameWindows;
+
+    public SidePanel selectAlertsFrameWindows() {
+        clickWithJS(alertsFrameWindows, 0,100);
+        return new SidePanel(driver);
+    }
 }
