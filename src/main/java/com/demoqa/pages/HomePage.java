@@ -17,4 +17,12 @@ public class HomePage extends BasePage {
         clickWithJS(bookStore, 0, 600);
     return new SidePanel(driver);
     }
+
+
+    @FindBy(css="a[href='/elements']")
+    WebElement elements;
+    public SidePanel selectElements() {
+        clickWithJS(elements,0, 200);
+        return new SidePanel(driver);
+    }
 }
