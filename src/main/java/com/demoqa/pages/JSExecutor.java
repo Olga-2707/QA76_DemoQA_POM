@@ -34,7 +34,7 @@ public class JSExecutor extends BasePage {
     }
 
     public JSExecutor refreshPage() {
-        js.executeScript("history.go(0);");// обновляет страницу - 0б 1 - на шаг вперед, -1 - на шаг назад
+        js.executeScript("history.go(0);");// обновляет страницу - 0, 1 - на шаг вперед, -1 - на шаг назад
         return this;
     }
 

@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BasePage {
     protected WebDriver driver;
@@ -61,6 +63,21 @@ public class BasePage {
             }
         }
 
+    public boolean isContainsText(String text, WebElement element) {
+        return element.getText().contains(text);
     }
+
+    public boolean shouldHaveText(WebElement element, String text, int time) {
+        return getWait(time)
+                .until(ExpectedConditions.textToBePresentInElement(element,text));
+    }
+
+    //Этот метод полезен, когда в ходе тестирования открывается несколько вкладок
+    // или окон браузера, и вам нужно переключаться между ними, чтобы выполнять различные действия на каждой странице
+    public void switchToNewTabWindow(int index) {
+        List<String> tabs = new ArrayList<>(driver.getWindowHandles());//Получает список всех открытых вкладок (окон) браузера, используя метод driver.getWindowHandles()
+        driver.switchTo().window(tabs.get(index)); //Переключает фокус драйвера Selenium на вкладку (окно) с индексом, переданным в качестве аргумента index
+    }
+}
 
 

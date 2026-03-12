@@ -16,7 +16,7 @@ public class ProfilePage extends BasePage {
     @FindBy(id = "userName-value")
     WebElement usernameValue;
     public ProfilePage verifyUserName(String name) {
-        Assertions.assertTrue(usernameValue.getText().contains(name));
+        Assertions.assertTrue(isContainsText(name, usernameValue));
         return this;
     }
 }

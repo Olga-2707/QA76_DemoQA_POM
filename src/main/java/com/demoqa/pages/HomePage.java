@@ -33,4 +33,12 @@ public class HomePage extends BasePage {
         clickWithJS(alertsFrameWindows, 0,100);
         return new SidePanel(driver);
     }
+
+    @FindBy(xpath = "//h5[normalize-space()='Widgets']")
+    WebElement widgets;
+    public SidePanel selectWidgets() {
+        clickWithJS(widgets,0,100);
+        return new SidePanel(driver);
+    }
+
 }

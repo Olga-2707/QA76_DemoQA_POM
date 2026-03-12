@@ -2,7 +2,10 @@ package com.demoqa.pages;
 
 import com.demoqa.core.BasePage;
 import com.demoqa.pages.alertsFrameWindows.AlertsPage;
+import com.demoqa.pages.alertsFrameWindows.FramesPage;
+import com.demoqa.pages.alertsFrameWindows.WindowsPage;
 import com.demoqa.pages.bookStore.LoginPage;
+import com.demoqa.pages.widgets.SelectPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,4 +36,33 @@ public class SidePanel extends BasePage {
         clickWithJS(alerts,0,200);
         return new AlertsPage(driver);
     }
+
+    @FindBy(xpath = "//span[.='Browser Windows']")
+    WebElement browserWindows;
+
+    public WindowsPage selectBrowserWindows() {
+        clickWithJS(browserWindows,0,100);
+        return new WindowsPage(driver);
+    }
+
+    @FindBy(xpath = "//span[.='Frames']")
+    WebElement frames;
+    public FramesPage selectFrame() {
+        clickWithJS(frames,0,100);
+        return new FramesPage(driver);
+    }
+
+    @FindBy(xpath = "//span[.='Select Menu']")
+    WebElement selectMenu;
+    public SelectPage selectSelect() {
+        clickWithJS(selectMenu,0,400);
+        return new SelectPage(driver);
+    }
+
+//    @FindBy(xpath = "//span[.='Nested Frames']")
+//    WebElement nestedFrames;
+//    public FramesPage selectNestedFrames() {
+//        clickWithJS(nestedFrames,0,100);
+//        return new FramesPage(driver);
+//    }
 }
