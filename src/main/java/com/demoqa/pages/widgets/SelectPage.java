@@ -7,8 +7,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+
+import java.awt.*;
 
 import static java.awt.SystemColor.text;
 
@@ -53,6 +56,25 @@ public class SelectPage extends BasePage {
             softly.assertThat(isContainsText(text, element)).isTrue();
         }
         softly.assertAll();
+        return this;
+    }
+
+    public SelectPage verifySelectCarByValue(String car, String color) {
+        WebElement selectedCar = driver.findElement(By.cssSelector("[value='" + car + "']"));
+        click(selectedCar);
+        //System.out.println(selectedCar.getCssValue("background-color"));
+        Assertions.assertTrue(selectedCar.getCssValue("background-color").contains(color));
+        return this;
+    }
+    public SelectPage verifySelectCarByFormat(String car, String color){
+        WebElement selectedCar = driver.findElement(By.cssSelector("[value='" + car + "']"));
+        click(selectedCar);
+        //new Select(selectedCar).selectByVisibleText(car);//ничего не делающий код
+        String rgbFormat = selectedCar.getCssValue("background-color");
+        //Color Selenium выбираем
+        String format = Color.fromString(selectedCar.getCssValue("background-color")).asHex();
+        //System.out.println(format);
+        Assertions.assertTrue(format.contains(color));
         return this;
     }
 }

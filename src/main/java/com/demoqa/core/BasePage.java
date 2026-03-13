@@ -1,9 +1,7 @@
 package com.demoqa.core;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,11 +13,13 @@ import java.util.List;
 public class BasePage {
     protected WebDriver driver;
     public static JavascriptExecutor js;
+    public static Actions actions;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);//для инициализации страницы
         js = (JavascriptExecutor) driver;
+        actions = new Actions(driver);
     }
 
     public void scrollWithJS(int x, int y){
@@ -77,6 +77,20 @@ public class BasePage {
     public void switchToNewTabWindow(int index) {
         List<String> tabs = new ArrayList<>(driver.getWindowHandles());//Получает список всех открытых вкладок (окон) браузера, используя метод driver.getWindowHandles()
         driver.switchTo().window(tabs.get(index)); //Переключает фокус драйвера Selenium на вкладку (окно) с индексом, переданным в качестве аргумента index
+    }
+
+    public boolean isElementVisible(WebElement element){
+        try {
+            element.isDisplayed();
+            return true;
+        } catch (NoSuchElementException e) {
+            e.getMessage();
+            return false;
+        }
+    }
+
+    public void waitOfElementVisibility(WebElement element, int time){
+        getWait(time).until(ExpectedConditions.visibilityOf(element));
     }
 }
 
