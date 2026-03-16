@@ -43,7 +43,7 @@ public class SelectPage extends BasePage {
     public SelectPage multiSelect(String[] colors) {
         for (String text:colors){
             selectInput.sendKeys(text);
-            selectInput.sendKeys(Keys.ENTER);
+            selectInput.sendKeys(Keys.ENTER);//НАЖАТЬ кнопку Enter.У класса Keys есть другие кнопки еще
         }
         click(space);
         return this;
@@ -69,7 +69,7 @@ public class SelectPage extends BasePage {
     public SelectPage verifySelectCarByFormat(String car, String color){
         WebElement selectedCar = driver.findElement(By.cssSelector("[value='" + car + "']"));
         click(selectedCar);
-        //new Select(selectedCar).selectByVisibleText(car);//ничего не делающий код
+        //new Select(selectedCar).selectByVisibleText(car);//должен выбрать car, но она имеет тэг option!
         String rgbFormat = selectedCar.getCssValue("background-color");
         //Color Selenium выбираем
         String format = Color.fromString(selectedCar.getCssValue("background-color")).asHex();

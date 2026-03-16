@@ -1,6 +1,7 @@
 package com.demoqa.pages.widgets;
 
 import com.demoqa.core.BasePage;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +16,13 @@ public class SliderPage extends BasePage {
     public SliderPage moveSlider() {
         scrollWithJS(0, 50);
         actions.dragAndDropBy(rangeSlider,310, 0).perform(); //Что делает?
+        return this;
+    }
+
+    @FindBy(id = "sliderValue")
+    WebElement sliderValue;
+    public SliderPage verifySliderValue(String number) {
+        Assertions.assertEquals(number,sliderValue.getDomAttribute("value"));
         return this;
     }
 }

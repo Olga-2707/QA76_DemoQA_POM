@@ -13,7 +13,7 @@ import java.util.List;
 public class BasePage {
     protected WebDriver driver;
     public static JavascriptExecutor js;
-    public static Actions actions;
+    protected Actions actions;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

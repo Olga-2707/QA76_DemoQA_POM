@@ -5,6 +5,7 @@ import com.demoqa.pages.alertsFrameWindows.AlertsPage;
 import com.demoqa.pages.alertsFrameWindows.FramesPage;
 import com.demoqa.pages.alertsFrameWindows.WindowsPage;
 import com.demoqa.pages.bookStore.LoginPage;
+import com.demoqa.pages.elements.ButtonsPage;
 import com.demoqa.pages.widgets.MenuPage;
 import com.demoqa.pages.widgets.SelectPage;
 import com.demoqa.pages.widgets.SliderPage;
@@ -27,7 +28,7 @@ public class SidePanel extends BasePage {
     @FindBy(xpath = "//span[.='Text Box']")
     WebElement textBox;
     public JSExecutor selectTextBox() {
-        clickWithJS(textBox,0, 100);
+        clickWithJS(textBox,0, 50);
         return new JSExecutor(driver);
     }
 
@@ -73,6 +74,13 @@ public class SidePanel extends BasePage {
     public SliderPage getSlider() {
         clickWithJS(slider,0,300);
         return new SliderPage(driver);
+    }
+
+    @FindBy(xpath = "//span[.='Buttons']")
+    WebElement buttons;
+    public ButtonsPage getButtons() {
+        click(buttons);
+        return new ButtonsPage(driver);
     }
 
 //    @FindBy(xpath = "//span[.='Nested Frames']")

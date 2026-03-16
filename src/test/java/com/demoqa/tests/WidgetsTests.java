@@ -52,7 +52,7 @@ public class WidgetsTests extends TestBase {
     @Test
     public void sliderTest(){
         sidePanel.getSlider();
-        new SliderPage(driver).moveSlider();
-                //.verifySliderValue("100");
+        new SliderPage(driver).moveSlider()
+                .verifySliderValue("100");
     }
 }
